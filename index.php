@@ -1,5 +1,38 @@
 <?php
-  $url = "http://169.254.169.254/latest/meta-data/instance-id";
-  $instance_id = file_get_contents($url);
-  echo " <h1> <font color='yellow'>  Instance ID: <b>" . $instance_id . "</b><br/></font> </h1> ";
-?>
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+?><!DOCTYPE html>
+<html>
+  <head>
+    <title>Bem vindo AWS Cloud</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body style="background-color:blue">
+    <div class="container">
+
+  	<div class="row">
+  		<div class="col-md-12">
+
+      <?php include('menu.php'); ?>
+      <div class="jumbotron" style="background-color:#555; color:#fff">
+      <p>
+      <?php include("get-index-meta-data.php"); ?>
+
+      <?php include('get-cpu-load.php'); ?>
+      <?php echo exec('service codedeploy-agent restart > /dev/null &'); ?> 
+      </p>
+      <p>
+      </p>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+  </body>
+</html>
